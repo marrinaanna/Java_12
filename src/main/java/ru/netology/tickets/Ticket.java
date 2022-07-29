@@ -1,5 +1,7 @@
 package ru.netology.tickets;
 
+import java.util.Objects;
+
 public class Ticket implements Comparable<Ticket> {
     private int id;
     private int cost;
@@ -65,4 +67,16 @@ public class Ticket implements Comparable<Ticket> {
         return 0;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ticket ticket = (Ticket) o;
+        return id == ticket.id && cost == ticket.cost && time == ticket.time && Objects.equals(airportNameFrom, ticket.airportNameFrom) && Objects.equals(airportNameTo, ticket.airportNameTo);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cost, airportNameFrom, airportNameTo, time);
+    }
 }

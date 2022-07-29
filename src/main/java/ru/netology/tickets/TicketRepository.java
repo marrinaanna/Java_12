@@ -20,9 +20,10 @@ public class TicketRepository {
         }
         return null;
     }
+
     public void removeTicketById(int id) {
-        if(findById(id)==null){
-            throw new NotFoundException("There is no ticket with "+id+" id");
+        if (findById(id) == null) {
+            throw new NotFoundException("There is no ticket with " + id + " id");
         }
         Ticket[] tmp = new Ticket[tickets.length - 1];
         int i = 0;
@@ -34,14 +35,16 @@ public class TicketRepository {
             tickets = tmp;
         }
     }
+
     public Ticket findByAirport(String from, String to) {
         for (Ticket ticket : tickets) {
-            if ((ticket.getAirportNameFrom() == from) && (ticket.getAirportNameTo() == to)){
+            if ((ticket.getAirportNameFrom() == from) && (ticket.getAirportNameTo() == to)) {
                 return ticket;
             }
         }
         return null;
     }
+
     public Ticket[] getAll() {
         return tickets;
     }

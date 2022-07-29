@@ -17,7 +17,7 @@ public class TicketManagerTest {
     Ticket ticket8 = new Ticket(8, 25_000, "VKO", "JFK");
 
     @Test
-    public void managerShouldFindTicketsAndSort() {
+    public void managerShouldFindSomeTicketsAndSort() {
         repo.addTicket(ticket1);
         repo.addTicket(ticket2);
         repo.addTicket(ticket3);
@@ -27,7 +27,22 @@ public class TicketManagerTest {
         repo.addTicket(ticket7);
         repo.addTicket(ticket8);
         Ticket[] actual = manager.findAll("VKO", "JFK");
-        Ticket[] expected = {ticket6, ticket2,ticket8, ticket7};
+        Ticket[] expected = {ticket6, ticket2, ticket8, ticket7};
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
+    public void managerShouldFindOnlyOneTicket() {
+        repo.addTicket(ticket1);
+        repo.addTicket(ticket2);
+        repo.addTicket(ticket3);
+        repo.addTicket(ticket4);
+        repo.addTicket(ticket5);
+        repo.addTicket(ticket6);
+        repo.addTicket(ticket7);
+        repo.addTicket(ticket8);
+        Ticket[] actual = manager.findAll("CGH", "AAQ");
+        Ticket[] expected = {ticket5};
         assertArrayEquals(expected, actual);
     }
 
